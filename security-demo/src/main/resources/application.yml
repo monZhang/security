@@ -1,0 +1,36 @@
+server:
+  port: 80
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://132.232.48.123:3306/security?useSSL=false&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+    hikari:
+      idle-timeout: 60000
+      maximum-pool-size: 30
+      minimum-idle: 10
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  redis:
+    host: 132.232.48.123
+    database: 0
+  jackson:
+    serializaion:
+      indent_output: true
+  logging:
+    level: INFO
+  session:
+    store-type: none
+security:
+  basic:
+    enabled: false
+
+#    org.hibernate: INFO
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.hibernate.type.descriptor.sql.BasicExtractor:TRACE
+#    com.mypackage: DEBUG
