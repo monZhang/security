@@ -1,6 +1,5 @@
 server:
   port: 80
-
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -14,7 +13,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
   redis:
     host: 132.232.48.123
@@ -26,10 +25,16 @@ spring:
     level: INFO
   session:
     store-type: none
+  thymeleaf:
+    cache: false
 security:
   basic:
     enabled: false
 
+custom-security:
+  browser:
+#    loginPage: custom-login.html
+    loginType: redirect
 #    org.hibernate: INFO
 #    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 #    org.hibernate.type.descriptor.sql.BasicExtractor:TRACE

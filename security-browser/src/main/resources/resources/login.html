@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<title>登陆</title>
+<body>
+<h2>标准登录页面</h2>
+<h3>表单登录</h3>
+<form name='f' action='/login' method='POST'>
+    <table>
+        <tr>
+            <td>User:</td>
+            <td><input type='text' name='username' value=''></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type='password' name='password'/></td>
+        </tr>
+        <tr>
+            <td colspan='2'><input name="submit" type="submit" value="Login"/></td>
+        </tr>
+    </table>
+</form>
+
+<h2>标准登录页面-图片验证码</h2>
+<h3>表单登录</h3>
+<form name='f' action='/login' method='POST'>
+    <table>
+        <tr>
+            <td>User:</td>
+            <td><input type='text' name='username' value=''></td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type='password' name='password'/></td>
+        </tr>
+        <tr>
+            <td>验证码</td>
+            <td><input type='text' name='imgCode'/></td>
+            <td>
+                <img src="/valid/image-code"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan='2'><input name="submit" type="submit" value="Login"/></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
