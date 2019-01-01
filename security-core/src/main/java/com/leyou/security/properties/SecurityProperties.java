@@ -1,4 +1,4 @@
-package com.leyou.security.config;
+package com.leyou.security.properties;
 
 import lombok.Getter;
 import lombok.Setter;

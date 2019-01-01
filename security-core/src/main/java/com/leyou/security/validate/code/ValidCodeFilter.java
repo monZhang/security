@@ -2,8 +2,10 @@ package com.leyou.security.validate.code;
 
 import com.leyou.security.authentication.CustomAuthenticationFailureHandler;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -16,8 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Objects;
 
+@Component
 public class ValidCodeFilter extends OncePerRequestFilter {
 
+    @Autowired
     private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 
     SessionStrategy sessionSessionStrategy = new HttpSessionSessionStrategy();

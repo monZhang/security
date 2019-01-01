@@ -1,5 +1,6 @@
 package com.leyou.security.validate.code;
 
+import com.leyou.security.validate.code.ImageCode;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,12 @@ public class ValidCodeController {
 
     static final String SESSION_KEY = "sessionKey";
 
+    /**
+     * 图片验证码
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/code/image")
     public void generatValidCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -31,6 +38,10 @@ public class ValidCodeController {
         ImageIO.write(imageCode.getImage(), "jpg", response.getOutputStream());
     }
 
+    /**
+     * 生成图片验证码
+     * @return
+     */
     private ImageCode createImageCode() {
         //1 高和宽
         int height = 30;

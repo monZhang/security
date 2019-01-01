@@ -32,4 +32,6 @@ public class User {
 
     protected boolean enabled;
 
+    private String phone;
+
 }

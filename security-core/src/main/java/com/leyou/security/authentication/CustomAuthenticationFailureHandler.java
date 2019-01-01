@@ -1,7 +1,7 @@
 package com.leyou.security.authentication;
 
 import com.leyou.security.JsonResult;
-import com.leyou.security.config.SecurityProperties;
+import com.leyou.security.properties.SecurityProperties;
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +28,8 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
         if (StringUtils.endsWithIgnoreCase("REDIRECT", securityProperties.getBrowser().getLoginType().name())) {
             super.onAuthenticationFailure(request, response, exception);
         }
-
         response.setContentType("application/json;charset=utf-8");
-        response.getWriter().write(objectMapper.writeValueAsString(JsonResult.fail()));
+        response.getWriter().write(objectMapper.writeValueAsString(JsonResult.build("登录失败！")));
     }
 
 

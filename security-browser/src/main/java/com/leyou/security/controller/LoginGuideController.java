@@ -1,7 +1,7 @@
 package com.leyou.security.controller;
 
 import com.leyou.security.JsonResult;
-import com.leyou.security.config.SecurityProperties;
+import com.leyou.security.properties.SecurityProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.DefaultRedirectStrategy;

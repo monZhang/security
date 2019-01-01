@@ -1,7 +1,7 @@
 package com.leyou.security.authentication;
 
 import com.leyou.security.JsonResult;
-import com.leyou.security.config.SecurityProperties;
+import com.leyou.security.properties.SecurityProperties;
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
