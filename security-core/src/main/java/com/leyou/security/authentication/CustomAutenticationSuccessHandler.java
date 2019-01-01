@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-public class CustomAutenticationSeccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+public class CustomAutenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
     @Autowired
     private SecurityProperties securityProperties;

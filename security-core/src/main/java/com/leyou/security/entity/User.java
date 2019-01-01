@@ -26,12 +26,14 @@ public class User {
 
     protected String password;
 
+    private String phone;
+
+    private String nickname;
+
     protected boolean expired;
 
     protected boolean locked;
 
     protected boolean enabled;
-
-    private String phone;
 
 }

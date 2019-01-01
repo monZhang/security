@@ -5,13 +5,17 @@ import com.leyou.security.entity.User;
 import com.leyou.security.param.UserParam;
 import com.leyou.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
-public class UserRegistController {
+public class UserController {
 
     @Autowired
     private UserService userService;
@@ -22,12 +26,9 @@ public class UserRegistController {
         return JsonResult.ok();
     }
 
-
-    @GetMapping("/{id:\\d+}")
-    public JsonResult user(@PathVariable Long id) {
-        User user = userService.findUserById(id);
-        return JsonResult.ok(user);
+    @GetMapping("/me")
+    public JsonResult user(Authentication authentication) {
+        return JsonResult.ok(authentication);
     }
-
 
 }
