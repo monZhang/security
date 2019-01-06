@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/loginGuide")
+@RequestMapping("/login-guide")
 public class LoginGuideController {
 
     RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();

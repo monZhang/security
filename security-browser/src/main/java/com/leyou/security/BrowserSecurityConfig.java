@@ -33,15 +33,21 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new ValidCodeFilter(), UsernamePasswordAuthenticationFilter.class)
+
+        ValidCodeFilter validCodeFilter = new ValidCodeFilter();
+        validCodeFilter.setCustomAuthenticationFailureHandler(customAuthenticationFailureHandler);
+        validCodeFilter.setSecurityProperties(securityProperties);
+        validCodeFilter.initUrls();
+
+        http.addFilterBefore(validCodeFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
-                    .loginPage("/loginGuide")
+                    .loginPage("/login-guide")
                     .loginProcessingUrl("/login")
                     .successHandler(customAutenticationSuccessHandler)
                     .failureHandler(customAuthenticationFailureHandler)
                 .and()
                 .authorizeRequests()
-                    .antMatchers("/loginGuide",
+                    .antMatchers("/login-guide",
                             "/user",
                             "/code/image",
                             "/" + securityProperties.getBrowser().getRegistPage(),

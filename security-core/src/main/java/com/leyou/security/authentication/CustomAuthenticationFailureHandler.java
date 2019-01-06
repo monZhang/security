@@ -28,8 +28,10 @@ public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationF
         if (StringUtils.endsWithIgnoreCase("REDIRECT", securityProperties.getBrowser().getLoginType().name())) {
             super.onAuthenticationFailure(request, response, exception);
         }
-        response.setContentType("application/json;charset=utf-8");
-        response.getWriter().write(objectMapper.writeValueAsString(JsonResult.build("登录失败！")));
+        if (StringUtils.endsWithIgnoreCase("JSON", securityProperties.getBrowser().getLoginType().name())) {
+            response.setContentType("application/json;charset=utf-8");
+            response.getWriter().write(objectMapper.writeValueAsString(JsonResult.build("登录失败！")));
+        }
     }
 
 

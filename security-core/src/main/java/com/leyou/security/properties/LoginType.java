@@ -1,4 +1,4 @@
-package com.leyou.security.enums;
+package com.leyou.security.properties;
 
 import lombok.Getter;
 

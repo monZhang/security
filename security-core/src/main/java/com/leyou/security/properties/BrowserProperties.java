@@ -1,6 +1,5 @@
 package com.leyou.security.properties;
 
-import com.leyou.security.enums.LoginType;
 import lombok.Getter;
 import lombok.Setter;
 
