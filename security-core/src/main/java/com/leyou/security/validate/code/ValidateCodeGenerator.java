@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 验证码生成器
  */
-public interface ValidCodeGenerator {
+public interface ValidateCodeGenerator {
 
     ImageCode generator(HttpServletRequest request);
 

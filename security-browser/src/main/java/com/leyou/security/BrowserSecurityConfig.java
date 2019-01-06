@@ -3,7 +3,7 @@ package com.leyou.security;
 import com.leyou.security.authentication.CustomAutenticationSuccessHandler;
 import com.leyou.security.authentication.CustomAuthenticationFailureHandler;
 import com.leyou.security.properties.SecurityProperties;
-import com.leyou.security.validate.code.ValidCodeFilter;
+import com.leyou.security.validate.code.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,7 +34,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        ValidCodeFilter validCodeFilter = new ValidCodeFilter();
+        ValidateCodeFilter validCodeFilter = new ValidateCodeFilter();
         validCodeFilter.setCustomAuthenticationFailureHandler(customAuthenticationFailureHandler);
         validCodeFilter.setSecurityProperties(securityProperties);
         validCodeFilter.initUrls();

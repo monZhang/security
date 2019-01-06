@@ -10,14 +10,14 @@ import org.springframework.context.annotation.Configuration;
  * 验证码Bean配置
  */
 @Configuration
-public class ValidCodeBeanConfig {
+public class ValidateCodeBeanConfig {
 
     @Autowired
     private SecurityProperties securityProperties;
 
     @Bean
     @ConditionalOnMissingBean(name = "imageCodeGenerator")
-    public ValidCodeGenerator imageCodeGenerator() {
+    public ValidateCodeGenerator imageCodeGenerator() {
         ImageCodeGenerator imageCodeGenerator = new ImageCodeGenerator();
         imageCodeGenerator.setSecurityProperties(securityProperties);
         return imageCodeGenerator;

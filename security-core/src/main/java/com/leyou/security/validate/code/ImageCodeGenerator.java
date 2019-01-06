@@ -11,7 +11,7 @@ import java.util.Random;
 /**
  * 图片验证码生成器
  */
-public class ImageCodeGenerator implements ValidCodeGenerator {
+public class ImageCodeGenerator implements ValidateCodeGenerator {
 
     private SecurityProperties securityProperties;
 

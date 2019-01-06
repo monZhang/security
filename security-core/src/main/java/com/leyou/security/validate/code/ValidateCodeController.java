@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
-public class ValidCodeController {
+public class ValidateCodeController {
 
     SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
 
     static final String SESSION_KEY = "image-code";
 
     @Autowired
-    private ValidCodeGenerator imageCodeGenerator;
+    private ValidateCodeGenerator imageCodeGenerator;
 
     /**
      * 图片验证码

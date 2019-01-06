@@ -2,9 +2,9 @@ package com.leyou.security.validate.code;
 
 import org.springframework.security.core.AuthenticationException;
 
-public class ValidCodeException extends AuthenticationException {
+public class ValidateCodeException extends AuthenticationException {
 
-    public ValidCodeException(String msg) {
+    public ValidateCodeException(String msg) {
         super(msg);
     }
 

@@ -23,7 +23,7 @@ import java.util.Set;
 /**
  * 验证码过滤器，此filter先于usernamePasswordAuthenticationFilter执行
  */
-public class ValidCodeFilter extends OncePerRequestFilter {
+public class ValidateCodeFilter extends OncePerRequestFilter {
 
     private SessionStrategy sessionSessionStrategy = new HttpSessionSessionStrategy();
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
@@ -58,7 +58,7 @@ public class ValidCodeFilter extends OncePerRequestFilter {
         if (needValid) {
             try {
                 validate(new ServletWebRequest(request));
-            } catch (ValidCodeException ve) {
+            } catch (ValidateCodeException ve) {
                 customAuthenticationFailureHandler.onAuthenticationFailure(request, response, ve);
             }
         }
@@ -68,29 +68,29 @@ public class ValidCodeFilter extends OncePerRequestFilter {
 
     private void validate(ServletWebRequest request) throws ServletRequestBindingException {
 
-        Object imageCodeObj = sessionSessionStrategy.getAttribute(request, ValidCodeController.SESSION_KEY);
+        Object imageCodeObj = sessionSessionStrategy.getAttribute(request, ValidateCodeController.SESSION_KEY);
         String imgCode = ServletRequestUtils.getStringParameter(request.getRequest(), "imgCode");
 
         if (Objects.isNull(imageCodeObj)) {
-            throw new ValidCodeException("验证码为空！！");
+            throw new ValidateCodeException("验证码为空！！");
         }
 
         ImageCode imageCode = (ImageCode) imageCodeObj;
 
         if (StringUtils.isBlank(imageCode.getCode())) {
-            throw new ValidCodeException("验证码为空！！！");
+            throw new ValidateCodeException("验证码为空！！！");
         }
 
         if (imageCode.isExpired()) {
-            sessionSessionStrategy.removeAttribute(request, ValidCodeController.SESSION_KEY);
-            throw new ValidCodeException("验证码已过期！！！");
+            sessionSessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
+            throw new ValidateCodeException("验证码已过期！！！");
         }
 
         if (!StringUtils.equalsIgnoreCase(imageCode.getCode(), imgCode)) {
-            throw new ValidCodeException("验证码错误！！！");
+            throw new ValidateCodeException("验证码错误！！！");
         }
 
-        sessionSessionStrategy.removeAttribute(request, ValidCodeController.SESSION_KEY);
+        sessionSessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
     }
 
     public void setCustomAuthenticationFailureHandler(CustomAuthenticationFailureHandler customAuthenticationFailureHandler) {
