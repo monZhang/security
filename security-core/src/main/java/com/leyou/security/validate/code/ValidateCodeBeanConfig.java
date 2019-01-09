@@ -1,6 +1,9 @@
 package com.leyou.security.validate.code;
 
 import com.leyou.security.properties.SecurityProperties;
+import com.leyou.security.validate.code.image.ImageCodeGenerator;
+import com.leyou.security.validate.code.sms.DefaultSmsSender;
+import com.leyou.security.validate.code.sms.SmsCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -23,5 +26,18 @@ public class ValidateCodeBeanConfig {
         return imageCodeGenerator;
     }
 
+    @Bean
+    @ConditionalOnMissingBean(name = "smsCodeGenerator")
+    public ValidateCodeGenerator smsCodeGenerator() {
+        SmsCodeGenerator smsCodeGenerator = new SmsCodeGenerator();
+        smsCodeGenerator.setSecurityProperties(securityProperties);
+        return smsCodeGenerator;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(SmsSender.class)
+    public SmsSender defaultSmsSender() {
+        return new DefaultSmsSender();
+    }
 
 }

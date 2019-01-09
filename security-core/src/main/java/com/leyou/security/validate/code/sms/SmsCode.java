@@ -1,8 +1,16 @@
-package com.leyou.security.validate.code;
+package com.leyou.security.validate.code.sms;
+
+import com.leyou.security.validate.code.ValidCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-public class SmsCode {
+@Setter
+@Getter
+@NoArgsConstructor
+public class SmsCode implements ValidCode {
 
     private String code;
 

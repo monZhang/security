@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://132.232.48.123:3306/security?useSSL=false&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://XXXXXXX:3306/security?useSSL=false&useUnicode=true&characterEncoding=utf-8
     username: root
     password: root
     hikari:
@@ -16,7 +16,7 @@ spring:
       ddl-auto: update
     show-sql: true
   redis:
-    host: 132.232.48.123
+    host: XXXXXXX
     database: 0
   jackson:
     serializaion:
@@ -34,6 +34,11 @@ security:
 custom-security:
   browser:
     loginType: redirect
+  code:
+    image:
+      length: 4
+      width: 200
+
 #    loginPage: custom-login.html
 #    org.hibernate: INFO
 #    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

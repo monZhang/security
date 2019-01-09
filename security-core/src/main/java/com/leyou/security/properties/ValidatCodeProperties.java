@@ -20,4 +20,6 @@ public class ValidatCodeProperties {
      */
     private SmsCodeProperties sms = new SmsCodeProperties();
 
+    private String SESSION_KEY = "valid-code";
+
 }

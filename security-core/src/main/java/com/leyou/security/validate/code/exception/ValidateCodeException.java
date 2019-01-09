@@ -1,4 +1,4 @@
-package com.leyou.security.validate.code;
+package com.leyou.security.validate.code.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

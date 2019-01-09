@@ -2,6 +2,8 @@ package com.leyou.security.validate.code;
 
 import com.leyou.security.authentication.CustomAuthenticationFailureHandler;
 import com.leyou.security.properties.SecurityProperties;
+import com.leyou.security.validate.code.exception.ValidateCodeException;
+import com.leyou.security.validate.code.image.ImageCode;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
@@ -24,6 +26,7 @@ import java.util.Set;
  * 验证码过滤器，此filter先于usernamePasswordAuthenticationFilter执行
  */
 public class ValidateCodeFilter extends OncePerRequestFilter {
+
 
     private SessionStrategy sessionSessionStrategy = new HttpSessionSessionStrategy();
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
@@ -68,7 +71,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
 
     private void validate(ServletWebRequest request) throws ServletRequestBindingException {
 
-        Object imageCodeObj = sessionSessionStrategy.getAttribute(request, ValidateCodeController.SESSION_KEY);
+        Object imageCodeObj = sessionSessionStrategy.getAttribute(request, securityProperties.getCode().getSESSION_KEY());
         String imgCode = ServletRequestUtils.getStringParameter(request.getRequest(), "imgCode");
 
         if (Objects.isNull(imageCodeObj)) {
@@ -82,7 +85,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
         }
 
         if (imageCode.isExpired()) {
-            sessionSessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
+            sessionSessionStrategy.removeAttribute(request, securityProperties.getCode().getSESSION_KEY());
             throw new ValidateCodeException("验证码已过期！！！");
         }
 
@@ -90,7 +93,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter {
             throw new ValidateCodeException("验证码错误！！！");
         }
 
-        sessionSessionStrategy.removeAttribute(request, ValidateCodeController.SESSION_KEY);
+        sessionSessionStrategy.removeAttribute(request, securityProperties.getCode().getSESSION_KEY());
     }
 
     public void setCustomAuthenticationFailureHandler(CustomAuthenticationFailureHandler customAuthenticationFailureHandler) {

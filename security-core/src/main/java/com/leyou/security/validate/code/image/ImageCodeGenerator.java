@@ -1,7 +1,9 @@
-package com.leyou.security.validate.code;
+package com.leyou.security.validate.code.image;
 
 import com.leyou.security.properties.SecurityProperties;
+import com.leyou.security.validate.code.ValidateCodeGenerator;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.context.request.ServletWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
@@ -16,7 +18,8 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
     private SecurityProperties securityProperties;
 
     @Override
-    public ImageCode generator(HttpServletRequest request) {
+    public ImageCode generator(ServletWebRequest servletWebRequest) {
+        HttpServletRequest request = servletWebRequest.getRequest();
         //1 高和宽(默认从请求中获取，如果没有则从配置文件中读取【自定义会覆盖默认】)
         int height = ServletRequestUtils.getIntParameter(request, "height", securityProperties.getCode().getImage().getHeight());
         int width = ServletRequestUtils.getIntParameter(request, "width", securityProperties.getCode().getImage().getWidth());

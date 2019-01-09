@@ -1,13 +1,17 @@
-package com.leyou.security.validate.code;
+package com.leyou.security.validate.code.image;
 
+import com.leyou.security.validate.code.ValidCode;
+import com.leyou.security.validate.code.sms.SmsCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.awt.image.BufferedImage;
 
 @Setter
 @Getter
-public class ImageCode extends SmsCode {
+@NoArgsConstructor
+public class ImageCode extends SmsCode implements ValidCode {
 
     private BufferedImage image;
 
